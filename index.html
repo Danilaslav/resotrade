@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESOTRADE - Главная</title>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-primary: #0a0e17;
+        --bg-secondary: #111827;
+        --bg-tertiary: #1f2937;
+        --bg-card: linear-gradient(145deg, #131b2e, #1a2540);
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-hover: rgba(255, 255, 255, 0.08);
+        
+        --accent-primary: #4f46e5;
+        --accent-primary-hover: #6366f1;
+        --accent-primary-glow: rgba(79, 70, 229, 0.5);
+        --accent-secondary: #8b5cf6;
+        --accent-tertiary: #ec4899;
+        --accent-quaternary: #06b6d4;
+        
+        --gradient-primary: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        --gradient-secondary: linear-gradient(135deg, var(--accent-tertiary) 0%, var(--accent-quaternary) 100%);
+        --gradient-text: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+        
+        --text-primary: rgba(255, 255, 255, 0.95);
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-tertiary: rgba(255, 255, 255, 0.5);
+        
+        --border: rgba(255, 255, 255, 0.1);
+        --border-hover: rgba(255, 255, 255, 0.2);
+        
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+        --shadow-glow: 0 0 20px var(--accent-primary-glow);
+            
+            --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Montserrat', var(--font-sans);
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            --radius-sm: 0.5rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+            --radius-xl: 2rem;
+        --radius-full: 9999px;
+        
+            --transition-normal: all 0.3s ease;
+            --transition-fast: all 0.2s ease;
+            --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            --transition-elastic: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition-spring: all 0.8s cubic-bezier(0.18, 1.25, 0.4, 1.25);
+        }
+
+        /* Стили для полосы прокрутки */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary-hover);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--bg-secondary);
+        }
+
+        .light-theme {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-tertiary: #e2e8f0;
+            --bg-card: linear-gradient(145deg, #ffffff, #f1f5f9);
+            --glass: rgba(0, 0, 0, 0.05);
+            --glass-hover: rgba(0, 0, 0, 0.08);
+            
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            
+        --border: rgba(0, 0, 0, 0.1);
+        --border-hover: rgba(0, 0, 0, 0.2);
+        }
+
+        .pink-theme {
+            --accent-primary: #ec4899;
+            --accent-primary-hover: #f472b6;
+            --accent-primary-glow: rgba(236, 72, 153, 0.5);
+            --accent-secondary: #f472b6;
+            --accent-tertiary: #4f46e5;
+            --accent-quaternary: #06b6d4;
+            --gradient-primary: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+            --gradient-secondary: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font-sans);
+    }
+
+    body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        padding: var(--spacing-xl);
+            overflow: hidden;
+        position: relative;
+        transition: background-color 0.5s ease;
+        line-height: 1.5;
+            height: 100vh;
+        }
+
+        html {
+            overflow: hidden;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, transparent 30%),
+            radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 30%),
+            radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+        z-index: -1;
+        animation: gradientMove 20s ease-in-out infinite alternate;
+            background-size: 200% 200%;
+            filter: blur(60px);
+    }
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container {
+        max-width: 1200px;
+        margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .logo h1 {
+            font-family: var(--font-display);
+        font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+            margin-bottom: var(--spacing-sm);
+        position: relative;
+            animation: textReveal 1.2s var(--transition-spring);
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .logo p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grid {
+        display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        border: 1px solid var(--border);
+            transition: var(--transition-spring);
+            cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+            transform-origin: center bottom;
+        box-shadow: var(--shadow-sm);
+    }
+
+        .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+            right: 0;
+            height: 4px;
+        background: var(--gradient-primary);
+        opacity: 0;
+            transition: var(--transition-elastic);
+        }
+        
+        .card::after {
+        content: '';
+        position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+                           rgba(255, 255, 255, 0.12) 0%, 
+                           rgba(255, 255, 255, 0) 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--border-hover);
+        box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.2),
+                0 10px 10px -5px var(--accent-primary-glow);
+        }
+
+        .card:hover::before {
+        opacity: 1;
+    }
+
+        .card:hover::after {
+        opacity: 1;
+    }
+
+        .card > * {
+        position: relative;
+        z-index: 1;
+    }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-md);
+            background: var(--glass);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            transition: var(--transition-elastic);
+            box-shadow: inset 0 0 0 1px var(--border);
+            margin-bottom: var(--spacing-md);
+            z-index: 2;
+        }
+
+        .card-icon ion-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 32px;
+            --ionicon-stroke-width: 32px;
+        }
+
+        .card:hover .card-icon {
+            background: var(--accent-primary);
+        color: white;
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 0 25px var(--accent-primary-glow);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card-count {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--glass);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .card-number {
+        position: absolute;
+            bottom: var(--spacing-md);
+            right: var(--spacing-md);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-tertiary);
+            opacity: 0.3;
+            z-index: 0;
+            transition: var(--transition-elastic);
+            line-height: 1;
+        }
+
+        .card:hover .card-number {
+            color: var(--accent-primary);
+            opacity: 0.15;
+            transform: scale(1.2);
+        }
+
+    .theme-toggle {
+        position: fixed;
+        top: var(--spacing-xl);
+        left: var(--spacing-xl);
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-full);
+        background: var(--bg-card);
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+            transition: var(--transition-spring);
+        border: 1px solid var(--border);
+        z-index: 100;
+        overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+    }
+
+    .theme-toggle::before {
+        content: '';
+        position: absolute;
+            inset: 0;
+        background: var(--gradient-primary);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+            z-index: -1;
+    }
+
+    .theme-toggle:hover {
+            transform: translateY(-5px) rotate(15deg);
+        box-shadow: var(--shadow-glow);
+            color: white;
+    }
+
+    .theme-toggle:hover::before {
+        opacity: 1;
+    }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .modal {
+            display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1000;
+            backdrop-filter: blur(0);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+            animation: modalBackground 0.4s ease forwards;
+        }
+        
+        @keyframes modalBackground {
+            0% {
+                background: rgba(0, 0, 0, 0);
+                backdrop-filter: blur(0);
+            }
+            100% {
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(8px);
+            }
+    }
+
+    .modal-content {
+        background: var(--bg-card);
+            border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+            max-width: 90%;
+            width: 600px;
+            position: relative;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .modal.show .modal-content {
+            animation: modalContentShow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 0.1s;
+        }
+        
+        @keyframes modalContentShow {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+        cursor: pointer;
+            padding: var(--spacing-xs);
+        border-radius: var(--radius-full);
+            transition: var(--transition-bounce);
+            transform-origin: center;
+    }
+
+        .modal-close:hover {
+        background: var(--glass);
+            color: var(--text-primary);
+        transform: rotate(90deg);
+    }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        margin-bottom: var(--spacing-md);
+        color: var(--text-primary);
+        opacity: 0;
+            transform: translateY(-10px);
+            animation: modalElementFadeIn 0.6s forwards;
+            animation-delay: 0.2s;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            opacity: 0;
+        transform: translateY(-5px);
+            animation: modalElementFadeIn 0.6s forwards;
+            animation-delay: 0.3s;
+    }
+
+        @keyframes modalElementFadeIn {
+            to {
+        opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-actions {
+        display: flex;
+            gap: var(--spacing-sm);
+            opacity: 0;
+            transform: translateY(5px);
+            animation: modalElementFadeIn 0.6s forwards;
+            animation-delay: 0.4s;
+        }
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+        border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition-elastic);
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn::before {
+        content: '';
+        position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+        background: var(--gradient-primary);
+        color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px -5px var(--accent-primary-glow);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-secondary {
+            background: var(--glass);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-hover);
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--border-hover);
+        }
+        
+        .btn-secondary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+
+            .card-icon {
+                width: 56px;
+                height: 56px;
+            }
+            
+            .card-icon ion-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 28px;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: var(--spacing-md);
+            }
+            
+            .card {
+            padding: var(--spacing-md);
+        }
+
+            .theme-toggle {
+            top: auto;
+            bottom: var(--spacing-xl);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-icon {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .card-icon ion-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 24px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes themeTransition {
+            0% { 
+    opacity: 0;
+                transform: scale(0.95); 
+                filter: blur(4px);
+            }
+            100% { 
+    opacity: 1;
+                transform: scale(1); 
+                filter: blur(0);
+            }
+        }
+        
+        .theme-changing * {
+            transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+        }
+        
+        body, .card, .modal-content, .btn, .theme-toggle {
+            animation: themeTransition 0.5s ease;
+}
+
+.theme-menu {
+    position: fixed;
+    top: calc(var(--spacing-xl) + 60px);
+    left: var(--spacing-xl);
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    padding: var(--spacing-sm);
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    min-width: 150px;
+}
+
+.theme-menu.active {
+    display: flex;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-option {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.theme-option:hover {
+    background: var(--glass-hover);
+}
+
+.theme-option.active {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.theme-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        .theme-transition {
+    position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+            pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+        }
+
+        .card-svg-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-primary);
+            stroke-width: 3px;
+            transition: var(--transition-elastic);
+        }
+
+        .card:hover .card-svg-icon {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .card-svg-icon {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-svg-icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* Универсальные стили для прокрутки */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(79, 70, 229, 0.3) transparent;
+        }
+
+        body {
+            overflow-y: scroll;
+        }
+
+        /* Webkit (Chrome, Safari, новый Edge) */
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(79, 70, 229, 0.3);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(79, 70, 229, 0.5);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(79, 70, 229, 0.3) transparent;
+        }
+
+        /* IE и Edge (старые версии) */
+        * {
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+
+        /* Мобильные устройства */
+        @media (max-width: 768px) {
+            ::-webkit-scrollbar {
+                width: 2px;
+                height: 2px;
+            }
+        }
+
+        .new-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(255, 107, 107, 0.5);
+        }
+        100% { 
+                transform: scale(1);
+                box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>RESOTRADE</h1>
+            <p>Все полезные сайты и сервисы в одном месте</p>
+    </div>
+
+        <div class="grid">
+            <div class="card" onclick="window.location.href='tracker.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <rect x="3" y="7" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M17 7V5a3 3 0 0 0-3-3H10a3 3 0 0 0-3 3v2" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="16" cy="14" r="2" fill="currentColor"/>
+        </svg>
+    </div>
+                <h3 class="card-title">Финансовый трекер</h3>
+    </div>
+
+            <div class="card" onclick="window.location.href='cs2tools.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+            </div>
+                <h3 class="card-title">Инструменты CS2</h3>
+                <span class="new-badge">NEW</span>
+    </div>
+
+            <div class="card" onclick="window.location.href='invest.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <path d="M3 17L9 11L13 15L21 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <polyline points="17 7 21 7 21 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+        </div>
+                <h3 class="card-title">Инвестирование</h3>
+    </div>
+
+            <div class="card" onclick="window.location.href='target.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+        </div>
+                <h3 class="card-title">Достижения</h3>
+    </div>
+
+            <div class="card" onclick="window.location.href='value.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <path d="M16 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M8 21l-4-4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M20 7H4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+    </div>
+                <h3 class="card-title">Конвертер валют</h3>
+        </div>
+
+            <div class="card" onclick="window.location.href='statistics.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <rect x="3" y="12" width="4" height="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <rect x="10" y="8" width="4" height="12" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <rect x="17" y="4" width="4" height="16" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+    </div>
+                <h3 class="card-title">Статистика</h3>
+    </div>
+
+            <div class="card" onclick="window.location.href='about.html'">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="card-svg-icon">
+                        <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="17" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M17 13a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+        </div>
+                <h3 class="card-title">О нас</h3>
+            </div>
+                </div>
+            </div>
+            
+    <div class="modal" id="modal">
+    <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <ion-icon name="close-outline" size="large"></ion-icon>
+            </button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-description" id="modalDescription"></p>
+            <div class="modal-actions" id="modalActions">
+                <button class="btn btn-primary" onclick="goToPage()" id="modalButton"><span>Перейти</span></button>
+                <button class="btn btn-secondary" onclick="closeModal()"><span>Закрыть</span></button>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const modalContent = {
+            tracker: {
+                title: 'Финансовый трекер',
+                description: 'Отслеживайте свои финансы и управляйте бюджетом.',
+                page: 'index.html'
+            },
+            invest: {
+                title: 'Инвестирование',
+                description: 'Управляйте своими инвестициями и следите за их ростом.',
+                page: 'invest.html'
+            },
+            target: {
+                title: 'Достижения',
+                description: 'Ставьте цели и отслеживайте свои достижения.',
+                page: 'target.html'
+            },
+            value: {
+                title: 'Конвертер валют',
+                description: 'Конвертируйте валюты по актуальным курсам.',
+                page: 'value.html'
+            },
+            statistics: {
+                title: 'Статистика',
+                description: 'Анализируйте свои финансовые показатели.',
+                page: 'statistics.html'
+            },
+            about: {
+                title: 'О нас',
+                description: 'RESOTRADE - инновационный финансовый сервис, созданный командой профессионалов в 2023 году. Наша миссия - сделать финансовый учет и инвестирование доступными для каждого. Мы разрабатываем интуитивно понятные инструменты, которые помогают пользователям принимать обоснованные финансовые решения и достигать своих целей. Наша команда состоит из опытных финансовых аналитиков, программистов и дизайнеров, объединенных одной целью - создание лучшего финансового опыта для пользователей.',
+                page: 'about.html'
+            }
+        };
+
+        let currentPage = '';
+
+        // Эффект следования за курсором для карточек
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                card.style.setProperty('--x', `${x}%`);
+                card.style.setProperty('--y', `${y}%`);
+                
+                // Тонкий 3D эффект
+                const rotateX = (e.clientY - rect.top - rect.height / 2) / 10;
+                const rotateY = (rect.width / 2 - (e.clientX - rect.left)) / 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                });
+            });
+
+        function showModal(type) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.querySelector('.modal-content');
+            const title = document.getElementById('modalTitle');
+            const description = document.getElementById('modalDescription');
+            const actions = document.getElementById('modalActions');
+            const primaryButton = document.getElementById('modalButton');
+            
+            currentPage = modalContent[type].page;
+            title.textContent = modalContent[type].title;
+            description.textContent = modalContent[type].description;
+            
+            // Скрываем кнопку "Перейти" для Statistics
+            if (modalContent[type].hideButton) {
+                primaryButton.style.display = 'none';
+            } else {
+                primaryButton.style.display = 'block';
+            }
+            
+            // Сбрасываем анимации перед показом
+            title.style.animation = 'none';
+            description.style.animation = 'none';
+            actions.style.animation = 'none';
+            
+            setTimeout(() => {
+                title.style.animation = 'modalElementFadeIn 0.6s forwards';
+                description.style.animation = 'modalElementFadeIn 0.6s forwards 0.1s';
+                actions.style.animation = 'modalElementFadeIn 0.6s forwards 0.2s';
+            }, 10);
+            
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.querySelector('.modal-content');
+            
+            // Анимация закрытия
+            modalContent.style.animation = 'none';
+            modalContent.style.opacity = '1';
+            modalContent.style.transform = 'scale(1) translateY(0)';
+            
+            setTimeout(() => {
+                modalContent.style.animation = 'modalContentHide 0.4s forwards';
+                setTimeout(() => {
+                    modal.classList.remove('show');
+                    // Перенаправляем пользователя при закрытии
+                    if (currentPage) {
+                        window.location.href = currentPage;
+                    }
+                }, 300);
+            }, 10);
+        }
+        
+        // Добавляем анимацию скрытия модального окна
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes modalContentHide {
+                0% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0.95) translateY(20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function goToPage() {
+            if (currentPage) {
+                // Анимируем переход на другую страницу
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    window.location.href = currentPage;
+                }, 500);
+            }
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentTheme = root.classList.contains('light-theme') ? 'light' : 
+                                root.classList.contains('pink-theme') ? 'pink' : 'dark';
+            let nextTheme;
+            
+            // Определяем следующую тему
+            switch(currentTheme) {
+                case 'dark':
+                    nextTheme = 'light';
+                    break;
+                case 'light':
+                    nextTheme = 'pink';
+                    break;
+                case 'pink':
+                    nextTheme = 'dark';
+                    break;
+            }
+            
+            // Создаем эффект перехода
+            const transition = document.createElement('div');
+            transition.className = 'theme-transition';
+            document.body.appendChild(transition);
+            
+            // Анимируем переход
+            requestAnimationFrame(() => {
+                transition.style.opacity = '1';
+                
+                setTimeout(() => {
+                    // Удаляем все классы тем
+                    root.classList.remove('light-theme', 'pink-theme');
+                    
+                    // Добавляем новую тему
+                    if (nextTheme === 'light') {
+                        root.classList.add('light-theme');
+                    } else if (nextTheme === 'pink') {
+                        root.classList.add('pink-theme');
+                    }
+                    
+                    // Обновляем иконку
+                    const themeIcon = document.querySelector('.theme-toggle ion-icon');
+                    switch(nextTheme) {
+                        case 'dark':
+                            themeIcon.name = 'moon-outline';
+                            break;
+                        case 'light':
+                            themeIcon.name = 'sunny-outline';
+                            break;
+                        case 'pink':
+                            themeIcon.name = 'flower-outline';
+                            break;
+                    }
+                    
+                    // Плавно убираем эффект перехода
+                    setTimeout(() => {
+                        transition.style.opacity = '0';
+                        setTimeout(() => transition.remove(), 300);
+                    }, 50);
+                }, 150);
+            });
+            
+            // Сохраняем выбранную тему
+            localStorage.setItem('theme', nextTheme);
+        }
+
+        // Загружаем сохраненную тему при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('.theme-toggle ion-icon');
+            
+            if (savedTheme) {
+                document.body.className = savedTheme;
+                if (savedTheme === 'light-theme') {
+                    themeIcon.name = 'sunny-outline';
+                } else if (savedTheme === 'pink-theme') {
+                    themeIcon.name = 'flower-outline';
+                } else {
+                    themeIcon.name = 'moon-outline';
+                }
+            }
+        });
+
+        // Закрываем модальное окно при клике вне его
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        });
+        
+        // Эффект рябь при клике на кнопки
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.position = 'absolute';
+                ripple.style.top = `${y}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.width = '0';
+                ripple.style.height = '0';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+            setTimeout(() => {
+                    ripple.style.transition = 'all 0.6s ease';
+                    ripple.style.width = '300px';
+                    ripple.style.height = '300px';
+                    ripple.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                }, 10);
+            });
+        });
+    </script>
+</body>
+</html>
